@@ -1,24 +1,30 @@
+import { useState } from "react";
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { useState, useEffect } from "react";
 import SearchBar from "../components/searchBar/searchBar";
+import CardsContainer from "../components/cardsContainer/cardsContainer";
+import CardModal from "../components/cardModal/cardModal";
 
 export default function Home() {
 
-  const [counter, setCounter] = useState(0);
+  const [searchField, setSearchField] = useState("");
+  const [individualPokemon, setIndividualPokemon] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
-    /*const getPokemons = async () => {
-      for(let i=1; i < 21; i++) {
-        const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`);
-        const pokemonJSON = await pokemon.json();
-        console.log(pokemonJSON);
-      }
-    };
+  const searchPokemon = async () => {
+    try {
+      const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${searchField}/`);
+      const pokemonJSON = await pokemon.json();
+      setIndividualPokemon(pokemonJSON);
+      setShowModal(true);
+    } catch(error) {
+      alert("Enter a valid input");
+    }
+  }
 
-    getPokemons();*/
-    console.log("renderizado");
-  }, [])
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
   return (
     <div className={styles.container}>
@@ -29,15 +35,24 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        
-        <SearchBar />
-        <div>
-          {
-
-          }
-        </div>
+        {
+          showModal
+          &&
+          <CardModal 
+              closeModal={() => setShowModal(false)} 
+              modalState={showModal}
+              image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${individualPokemon.id}.png`}
+              pokemonInfo={individualPokemon}
+              name={capitalizeFirstLetter(individualPokemon.name)}
+          />
+        }
+        <SearchBar 
+          searchContent={searchField} 
+          searchFunction={setSearchField}
+          searchPokemon={searchPokemon}
+        />
+        <CardsContainer />
       </main>
-      
     </div>
   )
 }

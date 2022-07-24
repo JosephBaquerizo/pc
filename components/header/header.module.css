@@ -1,4 +1,26 @@
 .header {
-    background: #ed1818;
+    background: black;
     height: 5vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-weight: 500;
+}
+
+.navbarSection ul {
+    display: flex;
+}
+
+.navbarItem {
+    color: white;
+    padding: 10px;
+}
+
+.navbarItem:hover {
+    color: rgb(211, 211, 211);
+    cursor: pointer;
 }

@@ -1,8 +1,6 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background-color: rgb(46, 46, 153);
   height: 95vh;
 }

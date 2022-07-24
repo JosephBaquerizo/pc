@@ -3,7 +3,9 @@ import styles from "./header.module.css";
 export default function Header () {
     return (
         <div className={styles.header}>
-            <h2>Header</h2>
+            <section className={styles.logoSection}>
+                <span className={styles.logo}>Pokecheck</span>
+            </section>
         </div>
     )
 }

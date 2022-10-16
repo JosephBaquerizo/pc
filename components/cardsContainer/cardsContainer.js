@@ -23,10 +23,12 @@ export default function CardsContainer() {
         const getPokemons = async () => {
             setLoading(true);
             try {
-                for (let i=pokemonGroup; i < pokemonGroup + 24; i++) {
-                    const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`);
-                    const pokemonJSON = await pokemon.json();
-                    setPokemons(current => [...current, pokemonJSON]);
+                if (pokemons.length < 800) {
+                    for (let i=pokemonGroup; i < pokemonGroup + 24; i++) {
+                        const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`);
+                        const pokemonJSON = await pokemon.json();
+                        setPokemons(current => [...current, pokemonJSON]);
+                    }
                 }
             } catch(error) {
                 console.log(error);

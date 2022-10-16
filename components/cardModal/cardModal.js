@@ -73,11 +73,11 @@ export default function CardModal ({ closeModal, pokemonInfo, name, image }) {
                             </div>
                             <div className={styles.infoBlock}>
                                 <span className={styles.parameter}>height</span>
-                                <span>{height} kg</span>
+                                <span>{height} m</span>
                             </div>
                             <div className={styles.infoBlock}>
                                 <span className={styles.parameter}>weight</span>
-                                <span>{weight}</span>
+                                <span>{weight} kg</span>
                             </div>
                             <div className={styles.infoBlock}>
                                 <span className={styles.parameter}>type</span>

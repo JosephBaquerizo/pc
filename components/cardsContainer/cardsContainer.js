@@ -24,7 +24,7 @@ export default function CardsContainer() {
             setLoading(true);
             try {
                 if (pokemons.length < 800) {
-                    for (let i=pokemonGroup; i < pokemonGroup + 24; i++) {
+                    for (let i=pokemonGroup; i < pokemonGroup + 12; i++) {
                         const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`);
                         const pokemonJSON = await pokemon.json();
                         setPokemons(current => [...current, pokemonJSON]);
